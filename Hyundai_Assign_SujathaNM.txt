@@ -1,0 +1,98 @@
+Excercise -1
+================================================================================================
+
+Website:  https://clicktobuy.hyundai.co.in/#/bookACar?modelCode=0Y
+
+
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.Select;
+
+public class Hyundai {
+
+	public static void main(String[] args) throws InterruptedException {
+		
+		     
+	System.setProperty("webdriver.chrome.driver","C:\\Selenium Driver\\chromedriver_win32\\chromedriver.exe");
+	
+	ChromeOptions co= new ChromeOptions();
+	co.addArguments("--remote-allow-origins=*");
+	
+		       WebDriver driver = new ChromeDriver(co);
+		        driver.get("https://clicktobuy.hyundai.co.in/#/bookACar?modelCode=0Y");
+		        driver.manage().window().maximize();
+	
+		    
+
+		        //Select first option in the Model Drop Down
+		        
+		        Select modelDropDown = new Select(driver.findElement(By.xpath("//select[@id='model']")));
+		        modelDropDown.selectByIndex(1);
+		        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+
+		     // Select first option in the Fuel Type Drop Down
+		        Select fuelTypeDropDown = new Select(driver.findElement(By.id("inputfuel-01")));
+		        fuelTypeDropDown.selectByIndex(1);
+
+		        // Select first option in the Variant Drop Down
+		        Select variantDropDown = new Select(driver.findElement(By.xpath("//select[@id='variant']")));
+		        variantDropDown.selectByIndex(1);
+
+		        // Select first option in the Exterior Drop Down
+		        Select exteriorDropDown = new Select(driver.findElement(By.xpath("//select[@id='exterior']")));
+		        exteriorDropDown.selectByIndex(1);
+
+		        // Select  first option in the Dealer State Drop Down
+		        Select dealerStateDropDown = new Select(driver.findElement(By.xpath("//select[@id='dealerState']")));
+		        dealerStateDropDown.selectByIndex(1);
+
+		        // Select first option in the Dealer City Drop Down
+		        Select dealerCityDropDown = new Select(driver.findElement(By.xpath("//select[@id='dealerCity']")));
+		        dealerCityDropDown.selectByIndex(1);
+
+		        //Select first dealer in the Dealer Name Drop Down
+		        Select dealerNameDropDown = new Select(driver.findElement(By.xpath("//select[@id='dealerName']")));
+		        dealerNameDropDown.selectByIndex(1);
+
+		        // Capture and print the dealer name displayed on the image.
+		        WebElement dealerName = driver.findElement(By.xpath("//div[@class='dealer-name']/h4"));
+		        System.out.println(dealerName.getText());
+
+		     
+
+		List<WebElement> dealerNames = driver.findElements(By.xpath("//div[@class='dealer-name']/h4"));
+
+		
+		Select dealerStateDropDown1 = new Select(driver.findElement(By.xpath("//select[@id='dealerState']")));
+		dealerStateDropDown.selectByIndex(1);
+
+		// Iteration on each state
+		for (int i = 1; i <= dealerStateDropDown.getOptions().size(); i++) {
+		    // Select  first option in the Dealer City Drop Down
+		    Select dealerCityDropDown1 = new Select(driver.findElement(By.xpath("//select[@id='dealerCity']")));
+		    dealerCityDropDown.selectByIndex(1);
+		}
+
+		    // Iterate through each city
+		    for (int j = 1; j <= dealerCityDropDown.getOptions().size(); j++) {
+		        // Select dealer in the Dealer Name Drop Down
+		        Select dealerNameDropDown1 = new Select(driver.findElement(By.xpath("//select[@id='dealerName']")));
+		        dealerNameDropDown.selectByIndex(1);
+		    }
+
+		        // Capture and print the dealer name displayed on the image.
+		        WebElement dealerName1 = driver.findElement(By.xpath("//div[@class='dealer-name']/h4"));
+		        System.out.println(dealerName.getText());
+		    
+
+		   
+		
+}
+}
+
+
